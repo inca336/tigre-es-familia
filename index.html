@@ -918,7 +918,7 @@ a.btn{display:block;text-align:center;text-decoration:none;box-sizing:border-box
 </div>
 
 <script>
-const LINK = "https://claude.ai/artifact/62aZjGjYSVjbrmKya99x7L";
+const LINK = "https://inca336.github.io/tigre-es-familia/";
 
 const PREGUNTAS = [
   // FÁCILES
@@ -8558,9 +8558,9 @@ function pantallaFinal(res){
   $("mcRevancha").onclick=()=>empezarLibre();
   $("mcVolver").onclick=()=>previa();
   $("mcCompartir").onclick=()=>{
-    const txt=`Matador en Cancha: Tigre ${gT} - ${gR} ${M.rival.nombre}${pen?` (penales ${pen.t}-${pen.r})`:""}. ¿Le ganás vos? ${location.href}`;
+    const txt=`Matador en Cancha: Tigre ${gT} - ${gR} ${M.rival.nombre}${pen?` (penales ${pen.t}-${pen.r})`:""}. ¿Le ganás vos? ${linkJuego()}`;
     const ok=r=>{ $("mT").textContent=r?"¡TEXTO COPIADO!":"COPIÁ ESTE TEXTO"; $("mLink").textContent=txt; $("modal").hidden=false; };
-    if(navigator.share){ navigator.share({title:"Tigre es Familia",text:txt,url:location.href}).catch(()=>{}); return; }
+    if(navigator.share){ navigator.share({title:"Tigre es Familia",text:txt,url:linkJuego()}).catch(()=>{}); return; }
     if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(()=>ok(true),()=>ok(copiarFallback(txt))); else ok(copiarFallback(txt));
   };
 }
