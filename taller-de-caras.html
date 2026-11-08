@@ -1,0 +1,390 @@
+<title>Taller de caras</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: vista previa grande a la izquierda, controles al centro, lista de caras a la derecha; en celular todo en una columna */
+:root{
+  --bg:#eef1f8; --panel:#ffffff; --fg:#10172e; --muted:#5b6586; --line:#cdd4e6;
+  --azul:#1747d6; --rojo:#e8222b; --ok:#1b7f4a; --grid:#d9deec; --fondo-cara:#b9c3dc;
+  --f-disp:"Silkscreen","Courier New",monospace; --f-body:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0c1226; --panel:#141c38; --fg:#e8ecfa; --muted:#93a0c8; --line:#2a3560; --azul:#5b86ff; --rojo:#ff5a62; --ok:#4fd18b; --grid:#25305a; --fondo-cara:#2a3560; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0c1226; --panel:#141c38; --fg:#e8ecfa; --muted:#93a0c8; --line:#2a3560; --azul:#5b86ff; --rojo:#ff5a62; --ok:#4fd18b; --grid:#25305a; --fondo-cara:#2a3560; color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:14px/1.45 var(--f-body);padding-block:20px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1100px;margin:0 auto;display:grid;gap:16px}
+h1{font:700 22px/1.1 var(--f-disp);margin:0;letter-spacing:.02em}
+h1 span{color:var(--rojo)}
+.sub{color:var(--muted);margin:4px 0 0;max-width:62ch}
+h2{font:700 12px/1 var(--f-disp);letter-spacing:.08em;text-transform:uppercase;margin:0 0 10px;color:var(--muted)}
+.main{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:760px){.main{grid-template-columns:minmax(0,1fr)}}
+.card{background:var(--panel);border:1px solid var(--line);padding:14px;min-width:0}
+.prev{display:grid;gap:10px;justify-items:center}
+canvas.big{width:100%;max-width:320px;aspect-ratio:1;image-rendering:pixelated;background:var(--fondo-cara);border:2px solid var(--fg);touch-action:none;cursor:crosshair}
+.mini{display:flex;gap:10px;align-items:center;color:var(--muted);font-size:12px}
+canvas.mini1{width:48px;height:48px;image-rendering:pixelated;background:var(--fondo-cara);border:2px solid var(--fg)}
+.form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (max-width:480px){.form{grid-template-columns:minmax(0,1fr)}}
+label{display:grid;gap:4px;font-size:12px;color:var(--muted)}
+input,select{font:inherit;color:var(--fg);background:var(--bg);border:1px solid var(--line);padding:8px;min-width:0;width:100%}
+input[type="color"]{height:40px;padding:2px;cursor:pointer}
+input:focus-visible,select:focus-visible,button:focus-visible{outline:2px solid var(--azul);outline-offset:1px}
+.span2{grid-column:1/-1}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+button{font:600 12px var(--f-body);cursor:pointer;color:var(--fg);background:var(--panel);border:1px solid var(--fg);padding:9px 12px}
+button.pri{background:var(--azul);border-color:var(--azul);color:#fff}
+button:hover{filter:brightness(1.08)}
+.out{display:grid;gap:6px;margin-top:12px}
+textarea{font:12px/1.4 var(--f-body);color:var(--fg);background:var(--bg);border:1px solid var(--line);padding:8px;width:100%;min-height:64px;resize:vertical}
+.msg{min-height:1.2em;font-size:12px;color:var(--ok)}
+.pal{display:grid;grid-template-columns:repeat(16,minmax(0,1fr));gap:3px;margin-top:10px}
+.pal button{aspect-ratio:1;padding:0;border:2px solid var(--line);min-width:0}
+.pal button[aria-pressed="true"]{border-color:var(--fg);outline:2px solid var(--rojo)}
+.pal button.borra{background:repeating-conic-gradient(var(--grid) 0 25%,var(--panel) 0 50%) 0 0/8px 8px}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:8px}
+.gal button{display:grid;gap:4px;justify-items:center;padding:6px;font-size:10px;line-height:1.2;text-align:center;min-width:0}
+.gal canvas{width:56px;height:56px;image-rendering:pixelated;background:var(--fondo-cara)}
+.gal span{overflow-wrap:anywhere}
+.sec{display:grid;gap:14px}
+.tip{font-size:12px;color:var(--muted)}
+canvas.shirt{width:100%;max-width:320px;aspect-ratio:4/1;image-rendering:pixelated;background:var(--fondo-cara);border:2px solid var(--fg);touch-action:none;cursor:crosshair}
+.camprev{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:6px}
+.elegir{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:4px 10px;max-height:190px;overflow:auto;border:1px solid var(--line);padding:8px;margin-top:8px}
+.elegir label{display:flex;gap:6px;align-items:center;color:var(--fg);font-size:12px}
+.elegir input{width:auto}
+.libre-only{display:none}
+.libre .libre-only{display:block}
+.libre .simple-only{display:none}
+</style>
+
+<div class="wrap" id="app">
+  <header>
+    <h1>TALLER DE <span>CARAS</span></h1>
+    <p class="sub">Armá la cara pixel de cualquier jugador para las cartas de Armá tu Matador. Es la misma que dibuja el juego, así que lo que ves acá es lo que sale en la carta.</p>
+  </header>
+
+  <div class="main">
+    <section class="card prev" aria-label="Vista previa">
+      <canvas id="big" class="big" width="16" height="16"></canvas>
+      <div class="mini"><canvas id="mini" class="mini1" width="16" height="16"></canvas><span id="estado">Modo simple</span></div>
+    </section>
+
+    <div class="sec">
+      <section class="card">
+        <h2>Datos del jugador</h2>
+        <div class="form">
+          <label class="span2">Nombre<input id="nombre" value="Lionel Messi" autocomplete="off"></label>
+          <label>id (minúsculas, sin espacios)<input id="pid" value="messi" autocomplete="off"></label>
+          <label>Camiseta
+            <select id="camisa">
+              <option value="sel">Selección (celeste y blanca)</option>
+              <option value="tigre">Tigre (azul y roja)</option>
+              <option value="otra">Otra (elegís los colores)</option>
+            </select>
+          </label>
+          <label class="simple-only">Piel<select id="piel"><option>claro</option><option>medio</option><option>moreno</option></select></label>
+          <label class="simple-only">Pelo<select id="pelo"><option>negro</option><option selected>castano</option><option>rubio</option><option>canoso</option></select></label>
+          <label class="simple-only">Peinado<select id="pein"><option selected>corto</option><option>largo</option><option>rulos</option><option>pelado</option><option>entradas</option><option>vincha</option></select></label>
+          <label class="simple-only">Barba<select id="barba"><option>no</option><option selected>barba</option><option>bigote</option><option>sombra</option></select></label>
+          <label id="c1w" hidden>Color 1<input id="c1" type="color" value="#1747d6"></label>
+          <label id="c2w" hidden>Color 2<input id="c2" type="color" value="#e8222b"></label>
+        </div>
+        <div class="btns">
+          <button id="bLibre">Editar píxel por píxel</button>
+          <button id="bSimple" class="libre-only">Volver al modo simple</button>
+        </div>
+        <div class="libre-only">
+          <p class="tip">Elegí un color y pintá en la cara grande. El primero borra. Podés arrancar desde el modo simple y retocar: lunares, lentes, tatuajes.</p>
+          <div class="pal" id="pal" role="group" aria-label="Colores"></div>
+          <div class="btns"><button id="bLimpiar">Borrar todo</button></div>
+        </div>
+        <div class="out">
+          <h2 style="margin:10px 0 0">Línea para el juego</h2>
+          <textarea id="linea" readonly aria-label="Línea para pegar"></textarea>
+          <div class="btns" style="margin-top:0">
+            <button id="bCopiar" class="pri">Copiar línea</button>
+            <button id="bLista">Agregar a mi lista</button>
+            <button id="bPng">Ver PNG grande</button>
+          </div>
+          <div class="msg" id="msg" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="card" id="secCam">
+        <h2>Camiseta</h2>
+        <p class="tip">Dibujá una camiseta y aplicala a todos los de la Selección, a todos los de Tigre o solo a algunos. Se ve puesta en la cara de abajo a la derecha y en la galería de caras.</p>
+        <div class="camprev">
+          <canvas id="shirt" class="shirt" width="16" height="4" aria-label="Camiseta (16 por 4 píxeles)"></canvas>
+          <canvas id="shirtFace" class="mini1" width="16" height="16" aria-label="Cara con la camiseta"></canvas>
+        </div>
+        <div class="pal" id="pal2" role="group" aria-label="Colores de la camiseta"></div>
+        <div class="btns">
+          <button id="bBaseSel">Partir de la de Selección</button>
+          <button id="bBaseTigre">Partir de la de Tigre</button>
+          <button id="bCamBorrar">Borrar dibujo</button>
+        </div>
+        <div class="form" style="margin-top:12px">
+          <label class="span2">Aplicar a
+            <select id="cmQuien">
+              <option value="sel">Todos los de la Selección</option>
+              <option value="tigre">Todos los de Tigre</option>
+              <option value="algunos">Solo algunos jugadores</option>
+            </select>
+          </label>
+        </div>
+        <div id="cmElegir" hidden>
+          <div class="elegir" id="cmLista"></div>
+          <label style="margin-top:8px">Otros ids (separados por coma, por ejemplo: gimenez,lopez)<input id="cmOtros" autocomplete="off"></label>
+        </div>
+        <div class="btns">
+          <button id="bAplicar" class="pri">Aplicar camiseta</button>
+          <button id="bCamReset">Volver a las originales</button>
+        </div>
+        <div class="out">
+          <h2 style="margin:10px 0 0">Camisetas aplicadas</h2>
+          <textarea id="camLineas" readonly aria-label="Camisetas aplicadas" placeholder="Acá aparecen las camisetas que apliques. Copialas y mandámelas."></textarea>
+          <div class="btns" style="margin-top:0"><button id="bCopiarCam" class="pri">Copiar camisetas</button></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Mi lista (<span id="cant">0</span>)</h2>
+        <textarea id="lista" aria-label="Mi lista de caras" placeholder="Acá se juntan las caras que agregues. Copiala y mandámela para sumarlas al juego."></textarea>
+        <div class="btns">
+          <button id="bCopiarLista" class="pri">Copiar toda la lista</button>
+          <button id="bVaciar">Vaciar lista</button>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <section class="card">
+    <h2>Caras que ya tiene el juego (tocá una para usarla de base)</h2>
+    <div class="gal" id="gal"></div>
+  </section>
+</div>
+
+<script>
+(function(){
+"use strict";
+/* ===== Mismo dibujo y paleta que el juego (dtCara / DT_PAL) ===== */
+var DT_PAL=["","#f1c9a5","#d9a074","#a86b45","#c99a78","#b07a52","#7e4c2e","#1d1a1a","#5a3a22","#d9b25a","#c8c8c8","#f4f4f4","#75aadb","#1747d6","#e8222b","#8a3b2e","#1b1b1b","#ffffff","#2a2a2a","#3a6f2a","#ffd24a","#222a55","#9a9a9a","#d94a8a","#6b4a2a","#e8b04a","#ff8a3d","#8a5cd1","#00a3a3","#7a1f1f","#4a4a4a","#b3e0ff"];
+var CHARS="0123456789abcdefghijklmnopqrstuv";
+var $=function(id){return document.getElementById(id)};
+function dibujar(g,o){
+  var P=function(x,y,c,w,h){g.fillStyle=c;g.fillRect(x,y,w||1,h||1)};
+  var SK={claro:"#f1c9a5",medio:"#d9a074",moreno:"#a86b45"}[o.piel], SKO={claro:"#c99a78",medio:"#b07a52",moreno:"#7e4c2e"}[o.piel];
+  var HA={negro:"#1d1a1a",castano:"#5a3a22",rubio:"#d9b25a",canoso:"#c8c8c8"}[o.pelo];
+  var CAM=o.cam, pein=o.pein, barba=o.barba;
+  g.clearRect(0,0,16,16);
+  P(1,13,CAM[0],14,3); P(7,13,CAM[1],2,3); P(6,12,SK,4,1); P(6,12,SKO,4,1);
+  P(4,3,SK,8,9); P(4,11,SKO,8,1); P(3,6,SK,1,2); P(12,6,SK,1,2);
+  P(6,7,"#1b1b1b"); P(9,7,"#1b1b1b"); P(6,6,HA); P(9,6,HA); P(7,10,"#8a3b2e",2,1);
+  if(pein==="pelado"){ P(5,3,"#ffffff"); }
+  else if(pein==="entradas"){ P(4,3,HA,1,4); P(11,3,HA,1,4); P(6,2,HA,4,1); }
+  else if(pein==="rulos"){ P(3,1,HA,10,3); P(2,2,HA,1,4); P(13,2,HA,1,4); P(3,4,HA,1,2); P(12,4,HA,1,2); for(var x=3;x<13;x+=2) P(x,0,HA); }
+  else { P(4,2,HA,8,2); P(4,4,HA,1,2); P(11,4,HA,1,2);
+    if(pein==="largo"||pein==="vincha"){ P(3,3,HA,1,9); P(12,3,HA,1,9); P(4,6,HA,1,6); P(11,6,HA,1,6); }
+    if(pein==="vincha") P(3,3,"#f4f4f4",10,1); }
+  if(barba==="barba"){ P(4,9,HA,8,3); P(4,8,HA,1,1); P(11,8,HA,1,1); P(7,10,"#8a3b2e",2,1); }
+  else if(barba==="bigote") P(6,9,HA,4,1);
+  else if(barba==="sombra"){ g.globalAlpha=.35; P(4,9,HA,8,3); g.globalAlpha=1; P(7,10,"#8a3b2e",2,1); }
+}
+function hexRgb(h){h=h.replace("#","");return [parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)]}
+var PALRGB=DT_PAL.map(function(c){return c?hexRgb(c):null});
+function indiceCercano(r,g,b){var best=1,bd=1e9;for(var i=1;i<PALRGB.length;i++){var p=PALRGB[i],d=(p[0]-r)*(p[0]-r)+(p[1]-g)*(p[1]-g)+(p[2]-b)*(p[2]-b);if(d<bd){bd=d;best=i}}return best}
+
+/* ===== Estado ===== */
+var libre=false, grid=new Array(256).fill(0), pincel=1;
+var cv16=document.createElement("canvas"); cv16.width=cv16.height=16; var g16=cv16.getContext("2d");
+var cvBase=document.createElement("canvas"); cvBase.width=cvBase.height=16;
+var big=$("big"), gb=big.getContext("2d"), mini=$("mini"), gm=mini.getContext("2d");
+
+function camisa(){
+  var v=$("camisa").value;
+  if(v==="tigre") return ["#1747d6","#e8222b"];
+  if(v==="sel") return ["#75aadb","#f4f4f4"];
+  return [$("c1").value,$("c2").value];
+}
+function opciones(){return {piel:$("piel").value,pelo:$("pelo").value,pein:$("pein").value,barba:$("barba").value,cam:camisa()}}
+function valorCara(){
+  if(libre) return "px:"+grid.map(function(k){return CHARS[k]}).join("");
+  var o=opciones(); return [o.piel,o.pelo,o.pein,o.barba].join(",");
+}
+function pintarGrid(){
+  g16.clearRect(0,0,16,16);
+  for(var i=0;i<256;i++){var k=grid[i]; if(k>0){g16.fillStyle=DT_PAL[k];g16.fillRect(i%16,(i/16)|0,1,1)}}
+}
+function refrescar(){
+  if(libre) pintarGrid(); else dibujar(g16,opciones());
+  var gbase=cvBase.getContext("2d"); gbase.clearRect(0,0,16,16); gbase.drawImage(cv16,0,0);
+  var sh=camisaDe($("pid").value.trim(),$("camisa").value); if(sh) aplicarCamisa(g16,sh);
+  [gb,gm].forEach(function(g){g.clearRect(0,0,16,16);g.drawImage(cv16,0,0)});
+  var id=$("pid").value.trim()||"jugador";
+  $("linea").value=id+':"'+valorCara()+'",';
+  $("estado").textContent=libre?"Modo píxel por píxel":"Modo simple";
+  document.getElementById("app").classList.toggle("libre",libre);
+  var o=$("camisa").value==="otra"; $("c1w").hidden=!o; $("c2w").hidden=!o;
+  pintarPrevCam();
+}
+function aviso(t){$("msg").textContent=t; clearTimeout(aviso.t); aviso.t=setTimeout(function(){$("msg").textContent=""},2600)}
+function copiar(texto,ta){
+  var fallback=function(){ta.focus();ta.select();aviso("Seleccionado: copialo con Ctrl+C (o mantené apretado en el celu).")};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(texto).then(function(){aviso("Copiado.")},fallback)}else fallback();
+}
+
+/* ===== Cargar desde modo simple a píxeles ===== */
+function aPixeles(){
+  dibujar(g16,opciones());
+  var d=g16.getImageData(0,0,16,16).data;
+  for(var i=0;i<256;i++){var a=d[i*4+3]; grid[i]=a<30?0:indiceCercano(d[i*4],d[i*4+1],d[i*4+2])}
+}
+function slug(n){return n.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]/g,"")}
+
+/* ===== Eventos ===== */
+$("nombre").addEventListener("input",function(){ $("pid").value=slug($("nombre").value); refrescar(); });
+["pid","piel","pelo","pein","barba","camisa","c1","c2"].forEach(function(id){$(id).addEventListener("input",refrescar)});
+$("bLibre").addEventListener("click",function(){ if(!libre){aPixeles();libre=true} refrescar(); });
+$("bSimple").addEventListener("click",function(){ libre=false; refrescar(); });
+$("bLimpiar").addEventListener("click",function(){ grid.fill(0); refrescar(); });
+$("bCopiar").addEventListener("click",function(){ copiar($("linea").value,$("linea")); });
+$("bPng").addEventListener("click",function(){
+  var c=document.createElement("canvas"); c.width=c.height=256; var g=c.getContext("2d"); g.imageSmoothingEnabled=false; g.fillStyle=getComputedStyle(big).backgroundColor; g.fillRect(0,0,256,256); g.drawImage(cv16,0,0,256,256);
+  var w=window.open(); if(w){w.document.write('<img src="'+c.toDataURL()+'" style="image-rendering:pixelated;width:256px">')} else aviso("Hacé clic derecho sobre la cara grande para guardarla como imagen.");
+});
+
+/* paleta (la misma para la cara y para la camiseta) */
+function armarPal(cont){
+  DT_PAL.forEach(function(c,i){
+    var b=document.createElement("button"); b.type="button"; b.setAttribute("aria-label",i===0?"Borrar":"Color "+i); b.dataset.i=i;
+    if(i===0) b.className="borra"; else b.style.background=c;
+    b.setAttribute("aria-pressed",i===pincel?"true":"false");
+    b.addEventListener("click",function(){pincel=i;[].forEach.call(document.querySelectorAll(".pal button"),function(x){x.setAttribute("aria-pressed",x.dataset.i==pincel?"true":"false")})});
+    cont.appendChild(b);
+  });
+}
+armarPal($("pal")); armarPal($("pal2"));
+/* pintar en el canvas grande */
+var pintando=false;
+function pintarEn(e){
+  if(!libre) return; var r=big.getBoundingClientRect(); var x=Math.floor((e.clientX-r.left)/r.width*16), y=Math.floor((e.clientY-r.top)/r.height*16);
+  if(x<0||y<0||x>15||y>15) return; var i=y*16+x; if(grid[i]!==pincel){grid[i]=pincel;refrescar()}
+}
+big.addEventListener("pointerdown",function(e){pintando=true;big.setPointerCapture(e.pointerId);pintarEn(e)});
+big.addEventListener("pointermove",function(e){if(pintando)pintarEn(e)});
+big.addEventListener("pointerup",function(){pintando=false});
+big.addEventListener("pointercancel",function(){pintando=false});
+
+/* ===== Mi lista (guardada en este navegador si se puede) ===== */
+var lista=[];
+try{var gl=JSON.parse(localStorage.getItem("tallerCaras")||"[]"); if(Array.isArray(gl)) lista=gl}catch(e){}
+function guardarLista(){ try{localStorage.setItem("tallerCaras",JSON.stringify(lista))}catch(e){} }
+function pintarLista(){
+  $("cant").textContent=lista.length;
+  $("lista").value=lista.map(function(l){return "  "+l.linea+(l.nombre?"   // "+l.nombre+" · camiseta "+l.camisa:"")}).join("\n");
+}
+$("bLista").addEventListener("click",function(){
+  var id=$("pid").value.trim(); if(!id){aviso("Poné un id para el jugador.");return}
+  var item={id:id,nombre:$("nombre").value.trim(),camisa:$("camisa").value,linea:$("linea").value};
+  var k=lista.findIndex(function(l){return l.id===id}); if(k>=0) lista[k]=item; else lista.push(item);
+  guardarLista(); pintarLista(); aviso(k>=0?"Actualizada en tu lista.":"Agregada a tu lista.");
+});
+$("bCopiarLista").addEventListener("click",function(){ if(!lista.length){aviso("La lista está vacía.");return} copiar($("lista").value,$("lista")); });
+$("bVaciar").addEventListener("click",function(){ lista=[]; guardarLista(); pintarLista(); });
+
+/* ===== Caras que ya tiene el juego ===== */
+var GAL=[
+["fillol","Ubaldo Fillol","medio,negro,corto,no","sel"],["passarella","Daniel Passarella","claro,castano,corto,no","sel"],["ayala","Roberto Ayala","claro,negro,largo,no","sel"],["zanetti","Javier Zanetti","claro,negro,corto,no","sel"],
+["sorin","Juan Pablo Sorín","claro,negro,largo,no","sel"],["mascherano","Javier Mascherano","claro,negro,corto,no","sel"],["veron","Juan Sebastián Verón","claro,negro,pelado,no","sel"],["riquelme","Juan Román Riquelme","medio,negro,corto,no","sel"],
+["ortega","Ariel Ortega","medio,negro,corto,no","sel"],["francescoli","Enzo Francescoli","claro,castano,corto,no","sel"],["palermo","Martín Palermo","claro,rubio,largo,no","sel"],["batistuta","Gabriel Batistuta","claro,castano,largo,no","sel"],
+["gatti","Hugo Gatti","claro,castano,vincha,no","sel"],["marzolini","Silvio Marzolini","claro,negro,corto,no","sel"],["ruggeri","Oscar Ruggeri","claro,castano,rulos,no","sel"],["perfumo","Roberto Perfumo","claro,negro,corto,no","sel"],
+["redondo","Fernando Redondo","claro,negro,largo,no","sel"],["simeone","Diego Simeone","claro,negro,corto,no","sel"],["bochini","Ricardo Bochini","claro,castano,entradas,no","sel"],["maradona","Diego Maradona","medio,negro,rulos,no","sel"],
+["houseman","René Houseman","medio,negro,corto,no","sel"],["caniggia","Claudio Caniggia","claro,rubio,largo,no","sel"],["pmas","Oscar Más","medio,negro,corto,no","sel"],["kempes","Mario Kempes","claro,negro,largo,no","sel"],
+["messi","Lionel Messi","claro,castano,corto,barba","sel"],["enzofernandez","Enzo Fernández","claro,negro,corto,no","sel"],["julianalvarez","Julián Álvarez","claro,castano,corto,no","sel"],["dibumartinez","Dibu Martínez","claro,negro,corto,sombra","sel"],
+["depaul","Rodrigo De Paul","claro,castano,corto,barba","sel"],["macallister","Alexis Mac Allister","claro,castano,corto,no","sel"],["dimaria","Ángel Di María","claro,castano,corto,barba","sel"],["lautaromartinez","Lautaro Martínez","claro,negro,corto,sombra","sel"],
+["otamendi","Nicolás Otamendi","claro,negro,corto,barba","sel"],["cutiromero","Cristian Romero","claro,negro,corto,sombra","sel"],["lisandromartinez","Lisandro Martínez","claro,negro,corto,sombra","sel"],["nahuelmolina","Nahuel Molina","claro,negro,corto,sombra","sel"],
+["tagliafico","Nicolás Tagliafico","claro,castano,corto,barba","sel"],["acuna","Marcos Acuña","claro,castano,corto,barba","sel"],
+["ricardovilla","Ricardo Villa","claro,negro,largo,barba","tigre"],["lucaspratto","Lucas Pratto","claro,castano,largo,barba","tigre"],["luisislas","Luis Islas","claro,negro,largo,no","tigre"],["enriquewolff","Enrique Wolff","claro,castano,largo,no","tigre"],
+["pity","Pity Martínez","medio,negro,corto,barba","tigre"],["retegui","Mateo Retegui","claro,castano,corto,sombra","tigre"],["montillo","Walter Montillo","claro,negro,corto,no","tigre"],["darioconca","Darío Conca","claro,negro,corto,no","tigre"],["lucasbarrios","Lucas Barrios","claro,negro,corto,barba","tigre"]
+];
+var gal=$("gal");
+function renderGal(){
+  gal.innerHTML="";
+  GAL.forEach(function(it){
+    var b=document.createElement("button"); b.type="button";
+    var c=document.createElement("canvas"); c.width=c.height=16; var cg=c.getContext("2d");
+    var p=it[2].split(","); dibujar(cg,{piel:p[0],pelo:p[1],pein:p[2],barba:p[3],cam:it[3]==="tigre"?["#1747d6","#e8222b"]:["#75aadb","#f4f4f4"]});
+    var sh=camisaDe(it[0],it[3]); if(sh) aplicarCamisa(cg,sh);
+    var s=document.createElement("span"); s.textContent=it[1];
+    b.appendChild(c); b.appendChild(s);
+    b.addEventListener("click",function(){
+      libre=false; $("nombre").value=it[1]; $("pid").value=it[0]; $("piel").value=p[0]; $("pelo").value=p[1]; $("pein").value=p[2]; $("barba").value=p[3]; $("camisa").value=it[3];
+      refrescar(); window.scrollTo({top:0,behavior:"smooth"});
+    });
+    gal.appendChild(b);
+  });
+}
+
+/* ===== Camisetas ===== */
+var SH={sel:null,tigre:null,jug:{}};
+try{var gs=JSON.parse(localStorage.getItem("tallerCamisas")||"null"); if(gs&&typeof gs==="object") SH={sel:gs.sel||null,tigre:gs.tigre||null,jug:gs.jug||{}}}catch(e){}
+function guardarSH(){ try{localStorage.setItem("tallerCamisas",JSON.stringify(SH))}catch(e){} }
+var draft=new Array(64).fill(0);
+function baseCamisa(c){ var a=new Array(64).fill(0); for(var y=1;y<4;y++){ for(var x=1;x<15;x++) a[y*16+x]=c[0]; a[y*16+7]=c[1]; a[y*16+8]=c[1]; } return a; }
+draft=baseCamisa([12,11]);
+function strCamisa(a){ return "sh:"+a.map(function(k){return CHARS[k]}).join(""); }
+function aplicarCamisa(g,str){
+  g.clearRect(0,13,16,3);
+  for(var i=0;i<64;i++){ var k=parseInt(str[3+i],32); if(k>0&&DT_PAL[k]){ g.fillStyle=DT_PAL[k]; g.fillRect(i%16,12+((i/16)|0),1,1); } }
+}
+function camisaDe(id,cam){ var gr=cam==="tigre"?"tigre":(cam==="sel"?"sel":null); return SH.jug[id]||(gr&&SH[gr])||null; }
+var shirtC=$("shirt"), gsh=shirtC.getContext("2d"), shirtF=$("shirtFace"), gsf=shirtF.getContext("2d");
+function pintarPrevCam(){
+  gsh.clearRect(0,0,16,4); for(var i=0;i<64;i++){ var k=draft[i]; if(k>0){ gsh.fillStyle=DT_PAL[k]; gsh.fillRect(i%16,(i/16)|0,1,1); } }
+  gsf.clearRect(0,0,16,16); gsf.drawImage(cvBase,0,0); aplicarCamisa(gsf,strCamisa(draft));
+}
+var pintandoC=false;
+function pintarCamEn(e){
+  var r=shirtC.getBoundingClientRect(); var x=Math.floor((e.clientX-r.left)/r.width*16), y=Math.floor((e.clientY-r.top)/r.height*4);
+  if(x<0||y<0||x>15||y>3) return; var i=y*16+x; if(draft[i]!==pincel){draft[i]=pincel;pintarPrevCam()}
+}
+shirtC.addEventListener("pointerdown",function(e){pintandoC=true;shirtC.setPointerCapture(e.pointerId);pintarCamEn(e)});
+shirtC.addEventListener("pointermove",function(e){if(pintandoC)pintarCamEn(e)});
+shirtC.addEventListener("pointerup",function(){pintandoC=false});
+shirtC.addEventListener("pointercancel",function(){pintandoC=false});
+$("bBaseSel").addEventListener("click",function(){draft=baseCamisa([12,11]);pintarPrevCam()});
+$("bBaseTigre").addEventListener("click",function(){draft=baseCamisa([13,14]);pintarPrevCam()});
+$("bCamBorrar").addEventListener("click",function(){draft=new Array(64).fill(0);pintarPrevCam()});
+GAL.forEach(function(it){
+  var l=document.createElement("label"); var c=document.createElement("input"); c.type="checkbox"; c.value=it[0]; var t=document.createElement("span"); t.textContent=it[1];
+  l.appendChild(c); l.appendChild(t); $("cmLista").appendChild(l);
+});
+$("cmQuien").addEventListener("change",function(){ $("cmElegir").hidden=$("cmQuien").value!=="algunos"; });
+function nombreDe(id){ for(var i=0;i<GAL.length;i++) if(GAL[i][0]===id) return GAL[i][1]; return ""; }
+function pintarLineasCam(){
+  var L=[];
+  if(SH.sel) L.push('sel:"'+SH.sel+'",   // todos los de la Selección');
+  if(SH.tigre) L.push('tigre:"'+SH.tigre+'",   // todos los de Tigre');
+  Object.keys(SH.jug).forEach(function(id){ L.push(id+':"'+SH.jug[id]+'",   // '+(nombreDe(id)||"jugador")); });
+  $("camLineas").value=L.join("\n");
+}
+$("bAplicar").addEventListener("click",function(){
+  var str=strCamisa(draft), q=$("cmQuien").value;
+  if(q==="sel"||q==="tigre"){ SH[q]=str; aviso("Aplicada a todos los de "+(q==="sel"?"la Selección":"Tigre")+"."); }
+  else{
+    var ids=[].filter.call($("cmLista").querySelectorAll("input:checked"),function(){return true}).map(function(x){return x.value});
+    $("cmOtros").value.split(",").forEach(function(t){t=slug(t); if(t&&ids.indexOf(t)<0) ids.push(t)});
+    if(!ids.length){aviso("Elegí al menos un jugador.");return}
+    ids.forEach(function(id){SH.jug[id]=str}); aviso("Aplicada a "+ids.length+" jugador"+(ids.length>1?"es":"")+".");
+  }
+  guardarSH(); pintarLineasCam(); renderGal(); refrescar();
+});
+$("bCamReset").addEventListener("click",function(){ SH={sel:null,tigre:null,jug:{}}; guardarSH(); pintarLineasCam(); renderGal(); refrescar(); aviso("Volvieron las camisetas originales."); });
+$("bCopiarCam").addEventListener("click",function(){ if(!$("camLineas").value){aviso("Todavía no aplicaste ninguna camiseta.");return} copiar($("camLineas").value,$("camLineas")); });
+
+pintarLista(); pintarLineasCam(); renderGal(); refrescar();
+})();
+</script>
