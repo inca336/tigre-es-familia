@@ -568,7 +568,7 @@ a.btn{display:block;text-align:center;text-decoration:none;box-sizing:border-box
     <div class="menu-top">
       <h1 class="titulo"><span>TIGRE</span><span class="es">ES</span><span>FAMILIA</span></h1>
       <div class="botones"><button id="btnJugar" class="btn">JUGAR</button><button id="btnArte" class="btn azul">ARTE</button></div>
-      <div class="botones lb-menu"><button id="btnCuenta" class="lb-suave" data-lb="cuenta">👤 INICIAR SESIÓN</button><button id="btnRank" class="lb-suave" data-lb="rank">🏆 CLASIFICACIÓN</button></div>
+      <div class="botones lb-menu"><button id="btnCuenta" class="lb-suave" data-lb="cuenta">👤 CUENTA</button><button id="btnRank" class="lb-suave" data-lb="rank">🏆 CLASIFICACIÓN</button></div>
     </div>
     <div class="estadio">
       <div class="estadio-cv"><button id="btnGol" class="btn azul">⚽ GOL</button>
@@ -5645,7 +5645,7 @@ async function lbEnviar(S,n){
 
 /* ----- pantallas ----- */
 function lbPintar(){
-  const bc=$("btnCuenta"); if(bc) bc.textContent=LB.token?"👤 "+LB.user:"👤 INICIAR SESIÓN";
+  const bc=$("btnCuenta"); if(bc) bc.textContent=LB.token?"👤 "+LB.user:"👤 CUENTA";
   ["previa","clasico","final"].forEach(m=>{ const e=$("cvRec"+m[0].toUpperCase()+m.slice(1)); if(e) e.textContent=cvRecord(m); });
   const bar=$("cvCuentaBar"); if(!bar) return;
   bar.innerHTML=LB.token
@@ -5733,6 +5733,7 @@ async function lbInit(){
 }
 /* ----- bienvenida (una sola vez) ----- */
 function lbBienvenida(){
+  return; /* sin pop-up: la cuenta se crea o se inicia solo desde el botón 👤 del menú */
   if(LB_BV_VISTO||lbGet("tigre_bienvenida")) return;
   LB_BV_VISTO=true; lbSet("tigre_bienvenida","1");
   if(LB.token||$("menu").hidden) return;
