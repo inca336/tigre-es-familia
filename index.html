@@ -11,6 +11,18 @@ details.dt-anio>summary{cursor:pointer;font-family:var(--pixel);font-size:9px;pa
 .dt-tabs-pos button{font-size:8px;padding:8px 2px}
 </style></head><body>
 <title>Tigre es Familia</title>
+<meta name="theme-color" content="#0a1240">
+<meta name="description" content="Los juegos del Matador: trivia, penales, viborita, arcade y armá tu propio Tigre. Gratis, para jugar desde el celu.">
+<meta property="og:type" content="website"><meta property="og:locale" content="es_AR">
+<meta property="og:title" content="Tigre es Familia ⚽🔵🔴">
+<meta property="og:description" content="Los juegos del Matador. Trivia, penales, viborita y mucho más. ¡Entrá y jugá!">
+<meta property="og:url" content="https://inca336.github.io/tigre-es-familia/">
+<meta property="og:image" content="https://inca336.github.io/tigre-es-familia/preview.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png">
+<meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Tigre es Familia">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap">
@@ -561,6 +573,30 @@ a.btn{display:block;text-align:center;text-decoration:none;box-sizing:border-box
 @media (max-width:380px){ .arte-grid,.arte-chips{grid-template-columns:repeat(2,1fr)} }
 .arte-can{grid-template-columns:1fr !important}
 </style>
+<style>
+/* ===== v2: más fácil de leer y de entender ===== */
+.juegos-etq{margin:6px 0 -4px;font-family:var(--pixel);font-size:11px;line-height:1.5;color:#ffe9a8;letter-spacing:1px;text-align:left}
+.juegos-etq.grande{margin-top:14px;padding-top:14px;border-top:3px dashed rgba(255,255,255,.35)}
+.juego-info{font-size:11px !important;line-height:1.7 !important}
+.juego-nombre{font-size:15px}
+.lb-suave{font-size:11px !important;padding:13px 14px !important;background:rgba(6,10,40,.82) !important;color:#fff !important;border:3px solid #fff !important;box-shadow:3px 3px 0 var(--negro) !important;min-height:48px}
+.botones.lb-menu{gap:10px}
+@media (max-width:400px){ .botones.lb-menu{flex-direction:column;align-items:stretch;width:100%} }
+
+/* cantera estilo FC: lista compacta */
+.can-caja{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px 14px;background:#0b2a66;border:3px solid #000;box-shadow:3px 3px 0 #000;font-family:var(--pixel);font-size:10px;color:#9fb0ff}.can-caja b{color:#ffe9a8;font-weight:400;font-size:13px}
+.can-h{margin:14px 0 6px;font-family:var(--pixel);font-size:12px;font-weight:400;color:#ffe9a8}.can-h small{color:#9fb0ff;font-size:9px;margin-left:6px}
+.can-tabla{border:3px solid #000;background:#101636;box-shadow:3px 3px 0 #000}
+.can-th,.can-tr{display:grid;grid-template-columns:40px 1fr 36px 36px 36px;gap:4px;align-items:center;padding:11px 8px;font-family:var(--pixel);font-size:10px;width:100%;text-align:left}
+.can-th{background:#1a2150;color:#9fb0ff;font-size:8px;padding:9px 8px}
+.can-th button{background:none;border:0;color:inherit;font:inherit;padding:0;text-align:left;cursor:pointer}.can-th button.on{color:#fff}
+.can-tr{background:none;color:#fff;border:0;border-top:1px solid rgba(255,255,255,.12);cursor:pointer;min-height:46px}
+.can-tr.on{background:#1c2a6b;box-shadow:inset 3px 0 0 #4ade80}
+.can-pos{color:#9fb0ff}.can-nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.can-det{padding:10px 12px 12px;background:#0b1130;border-top:1px solid rgba(255,255,255,.12)}
+.can-vacio{margin:0;padding:14px;font-size:11px;color:#9fb0ff}
+details.can-det2>summary{cursor:pointer;font-family:var(--pixel);font-size:9px;color:#9fb0ff;padding:8px 0}
+</style>
 
 <div class="app">
   <!-- MENU -->
@@ -581,40 +617,42 @@ a.btn{display:block;text-align:center;text-decoration:none;box-sizing:border-box
   <!-- ELEGIR JUEGO -->
   <section id="juegos" class="screen" hidden>
     <h2 class="titulo-chico">ELEGÍ UN JUEGO</h2>
+    <p class="juegos-etq">⚡ PARTIDAS RÁPIDAS</p>
     <button id="btnTrivia" class="juego-card">
       <canvas class="juego-mini" data-mini="trivia" width="64" height="40" aria-hidden="true"></canvas>
       <span class="juego-nombre">TRIVIA DEL MATADOR</span>
-      <span class="juego-info">15 preguntas · de fácil a difícil</span>
-    </button>
-    <button id="btnDT" class="juego-card">
-      <canvas class="juego-mini" data-mini="dt" width="64" height="40" aria-hidden="true"></canvas>
-      <span class="juego-nombre">ARMÁ TU MATADOR</span>
-      <span class="juego-info">Sorteá tu 11 de Tigre y jugá 10 temporadas seguidas (2026-2035), con mercado de pases</span>
-    </button>
-    <button id="btnPen" class="juego-card">
-      <canvas class="juego-mini" data-mini="pinf" width="64" height="40" aria-hidden="true"></canvas>
-      <span class="juego-nombre">PENALES INFINITOS</span>
-      <span class="juego-info">Pateá y atajá sin parar hasta errar. ¿Cuál es tu récord?</span>
-    </button>
-    <button id="btnCv" class="juego-card">
-      <canvas class="juego-mini" data-mini="cv" width="64" height="40" aria-hidden="true"></canvas>
-      <span class="juego-nombre">CARAVANA MATADORA</span>
-      <span class="juego-info">La viborita, pero con hinchas camino a Victoria</span>
-    </button>
-    <button id="btnMc" class="juego-card">
-      <canvas class="juego-mini" data-mini="mc" width="64" height="40" aria-hidden="true"></canvas>
-      <span class="juego-nombre">MATADOR EN CANCHA</span>
-      <span class="juego-info">Jugá el partido con toques y deslizamientos</span>
+      <span class="juego-info">15 preguntas sobre Tigre. Empiezan fáciles.</span>
     </button>
     <button id="btnPg" class="juego-card">
       <canvas class="juego-mini" id="miniPg" width="64" height="40" aria-hidden="true"></canvas>
       <span class="juego-nombre">PATEÁ Y HACÉ EL GOL</span>
-      <span class="juego-info">Arcade: mantené la pelota en el aire y metela en un arco que se mueve cada vez más rápido</span>
+      <span class="juego-info">Mantené la pelota en el aire y metela en el arco.</span>
+    </button>
+    <button id="btnPen" class="juego-card">
+      <canvas class="juego-mini" data-mini="pinf" width="64" height="40" aria-hidden="true"></canvas>
+      <span class="juego-nombre">PENALES INFINITOS</span>
+      <span class="juego-info">Pateá y atajá penales hasta errar.</span>
     </button>
     <button id="btnQm" class="juego-card">
       <canvas class="juego-mini" id="miniQm" width="64" height="40" aria-hidden="true"></canvas>
       <span class="juego-nombre">¿QUIÉN TIENE MÁS?</span>
-      <span class="juego-info">Jugadores, DT y canchas de Tigre: ¿quién tiene más goles, partidos o efectividad? Sumá racha y batí tu récord</span>
+      <span class="juego-info">Elegí quién tiene más goles y sumá racha.</span>
+    </button>
+    <button id="btnCv" class="juego-card">
+      <canvas class="juego-mini" data-mini="cv" width="64" height="40" aria-hidden="true"></canvas>
+      <span class="juego-nombre">CARAVANA MATADORA</span>
+      <span class="juego-info">La viborita, con hinchas rumbo a Victoria.</span>
+    </button>
+    <button id="btnMc" class="juego-card">
+      <canvas class="juego-mini" data-mini="mc" width="64" height="40" aria-hidden="true"></canvas>
+      <span class="juego-nombre">MATADOR EN CANCHA</span>
+      <span class="juego-info">Jugá el partido tocando la pantalla.</span>
+    </button>
+    <p class="juegos-etq grande">🏆 PARA LOS QUE QUIEREN MÁS</p>
+    <button id="btnDT" class="juego-card">
+      <canvas class="juego-mini" data-mini="dt" width="64" height="40" aria-hidden="true"></canvas>
+      <span class="juego-nombre">ARMÁ TU MATADOR</span>
+      <span class="juego-info">Armá tu equipo y jugá 10 temporadas. Es un juego largo: lleva varias sesiones.</span>
     </button>
     <button id="btnPalm" class="juego-card">
       <span class="juego-nombre">🏆 PALMARÉS</span>
@@ -4899,7 +4937,7 @@ function dtUI_finCarrera(C){
     <div class="dt-card"><span class="dt-eti">LA CARRERA · ${T[0].anio}-${T[n-1].anio}</span><p>Títulos: ${tit.length?dtEsc(tit.join(", ")):"ninguno"}</p><p>Goleador de la era: ${dtEsc(dtGoleadorDe(goles))}</p>
     <p>Años en Primera: ${n-aniosB} · Años en la B: ${aniosB}${desc?` · Descensos: ${desc}`:""}${asc?` · Ascensos: ${asc}`:""}</p>
     ${MS.length?`<p>Mercados: vendiste ${vend.length} jugadores${comp.length?` y compraste ${comp.length}`:" y no compraste a nadie"}.</p>`:""}</div>
-    ${C.fin?`<div class="dt-card"><span class="dt-eti">🌱 EL PREDIO DE LA RESERVA Y LA PLATA</span><p>Cancha ${C.fin.cap}/5 · Residencia ${C.fin.casas}/4 · Gimnasio ${C.fin.inst}/5 · Cuerpo técnico ${C.fin.plat}/5</p><p>Caja final: ${dtPlata(C.fin.caja)}${C.fin.deuda?` · Deuda: ${dtPlata(C.fin.deuda.resta)}`:""}</p></div>`:""}
+    ${C.fin?`<div class="dt-card"><span class="dt-eti">🌱 LA CANTERA Y LA PLATA</span><p>Cantera: nivel ${(C.cantera&&C.cantera.nivel)||0}/5</p><p>Caja final: ${dtPlata(C.fin.caja)}${C.fin.deuda?` · Deuda: ${dtPlata(C.fin.deuda.resta)}`:""}</p></div>`:""}
     <div class="dt-card"><span class="dt-eti">AÑO POR AÑO</span><ul class="dt-mini">${T.map(fila).join("")}</ul></div>
     ${T.map(S=>`<details class="dt-anio"><summary>${S.anio}${S.enB?" · "+DT_DIV_NOM[dtNivel(S)].toUpperCase():""}</summary>${dtObjetivosHTML(S)}${dtResumenHTML(S)}</details>`).join("")}
     <div class="dt-card" id="dtMil"><span class="dt-eti">MODO 1.000 TEMPORADAS</span>
@@ -4957,7 +4995,7 @@ async function dtFinCierre(C,S){
   // daños: cada derrota 2%, derbi 5%, derbi perdido 15%
   const perd=S.perd||0, clas=S.clas||0, clasP=S.clasP||0, nuevos=[];
   let tiradas=[]; for(let i=0;i<Math.max(0,perd-clasP);i++) tiradas.push(.02); for(let i=0;i<clas-clasP;i++) tiradas.push(.05); for(let i=0;i<clasP;i++) tiradas.push(.15);
-  for(const p of tiradas){ if(nuevos.length>=2) break; if(Math.random()<p){ const parte=FIN_PARTES_DANO[Math.floor(Math.random()*FIN_PARTES_DANO.length)];
+  for(const p of []){ if(nuevos.length>=2) break; if(Math.random()<p){ const parte=FIN_PARTES_DANO[Math.floor(Math.random()*FIN_PARTES_DANO.length)];
     if(!F.danos.concat(nuevos).some(d=>d.parte===parte)) nuevos.push({parte,costo:finR1(1+lv*.25),anio:S.anio}); } }
   F.danos=F.danos.concat(nuevos);
   F.caja=finR1(F.caja+neto);
@@ -4978,23 +5016,21 @@ async function dtFinCierre(C,S){
 /* Arranca el año: el club te da plata para invertir o guardar */
 async function dtFinInicioAnio(C){
   const F=finAsegurar(C), n=C.temps.length; if(F.inicio===n) return; F.inicio=n;
-  const sub=n?8:10, pIng=patIngreso(F); F.caja=finR1(F.caja+sub+pIng); F.clausura=F.danos.length>0; dtAutoGuardar();
+  const sub=n?8:10, pIng=patIngreso(F); F.caja=finR1(F.caja+sub+pIng); F.danos=[]; F.clausura=false; dtAutoGuardar();
   while(true){
     if(C.abortado) return;
     $("dtFinTit").textContent=`FONDOS DEL AÑO ${n+1}`;
     $("dtFinBody").innerHTML=`<div class="dt-card"><span class="dt-eti">💰 LA DIRIGENCIA TE DA PLATA</span>
       <p>${n?"Arranca un año nuevo":"Arrancás tu carrera"} y el club te pone <b>${dtPlata(sub)}</b> para invertir en la cantera o guardar para el mercado.${pIng?` Además entran <b>${dtPlata(pIng)}</b> de tus patrocinadores.`:""}</p>
       <span class="dt-plata">${dtPlata(F.caja)}</span>
-      <ul class="dt-mini"><li>Predio de la reserva: cancha ${F.cap}/5 · residencia ${F.casas}/4 · gimnasio ${F.inst}/5 · cuerpo técnico ${F.plat}/5 (los pibes crecen +${finDesarrollo(F)}% más rápido)</li>${F.deuda?`<li>Deuda con el banco: ${dtPlata(F.deuda.resta)} (cuota ${finPl2(F.deuda.cuotaMes)} por mes)</li>`:""}</ul></div>
-      ${F.clausura?`<div class="dt-card"><span class="dt-eti">🚫 CANCHA CLAUSURADA</span><p>Quedaron destrozos sin arreglar (${F.danos.map(d=>d.parte).join(", ")}). Este año se juega sin público y con multa, salvo que los repares ahora.</p></div>`:""}
+      <ul class="dt-mini">${F.deuda?`<li>Deuda con el banco: ${dtPlata(F.deuda.resta)} (cuota ${finPl2(F.deuda.cuotaMes)} por mes)</li>`:""}</ul></div>
       <button class="btn azul" id="finCancha">🌱 IR A LA CANTERA</button>
       <button class="btn" id="finSeguir">SEGUIR A LA PRETEMPORADA</button>`;
-    $("dtFinBody").insertAdjacentHTML("afterbegin",`<canvas class="mc-dib fin-est" id="finEst" width="120" height="72"></canvas>`); dibEstadioPintar($("finEst"),F);
     mostrar("dtFin");
     const v=await new Promise(r=>{ $("finCancha").onclick=()=>r("c"); $("finSeguir").onclick=()=>r("s"); });
     if(v==="c") await dtCancha(C,"dtFin"); else break;
   }
-  F.clausura=F.danos.length>0; dtAutoGuardar();
+  F.danos=[]; F.clausura=false; dtAutoGuardar();
 }
 /* Después del mercado: el banco avisa la cuota mensual y se descuenta del año */
 async function dtFinCuota(C){
@@ -5166,76 +5202,67 @@ function canPanelStats(niv,q,sig){
   const c=canEstadisticas(niv,q), cs=sig!=null?canEstadisticas(niv+1,q):null, col=["#7aa2ff","#4ade80","#f5c518","#ff5a5a"];
   return `<div class="can-stats">${CAN_TIERS.map((T,i)=>`<div class="can-st"><span>Potencial ${T.n}</span><div class="can-st-b"><i style="width:${c[i]*2}%;background:${col[i]}"></i></div><b>${c[i]}</b>${cs?`<small>${cs[i]>c[i]?"▲":cs[i]<c[i]?"▼":"="} ${cs[i]} con la mejora</small>`:""}</div>`).join("")}<p class="dt-sub">De cada 50 pibes que aparecen, así salen según tu cantera${q?(q>0?" y un país de buena cantera":" y un país de cantera floja"):""}.</p></div>`;
 }
+const canCol=v=>v>=85?"#2bd964":v>=75?"#8bdc4a":v>=65?"#f5d742":v>=55?"#f5a623":"#ff7a45";
+const canIni=n=>{ const p=String(n).split(" "); return p.length>1?p[0][0]+". "+p.slice(1).join(" "):n; };
 function dtCantera(C,volver){
   const Cn=canAsegurar(C), F=finAsegurar(C);
   return new Promise(res=>{
     const ov=document.createElement("div"); ov.id="finOver"; ov.innerHTML=`<div class="dt"><div class="dt-top"><button class="btn-chico" id="canX">◀ VOLVER</button><h2 class="dt-h">🌱 LA CANTERA</h2></div><div id="canCont"></div></div>`;
-    document.body.appendChild(ov); const cont=ov.querySelector("#canCont"); let pais=null, pos=null, msg="";
+    document.body.appendChild(ov); const cont=ov.querySelector("#canCont"); let pais=null, pos=null, msg="", abierto=null, orden="pot";
     const cerrar=()=>{ ov.remove(); dtAutoGuardar(); res(); }; ov.querySelector("#canX").onclick=cerrar;
-    const fichaK=(k,acc)=>{ const t=k.anual, salto=k.m-k.m0>=7;
-      return `<div class="dt-card can-k"><div class="can-k-top"><b>${dtEsc(k.nombre)}</b> <small>${CAN_PAISES[k.pais]?CAN_PAISES[k.pais].b:""} ${k.edad} años · ${k.posiciones[0]}</small></div>
-        ${canBarraPot(k)}<div class="can-k-n">Nivel <b>${k.m}</b> · Potencial <b class="can-pot t${canTier(k.pot)}">${k.pot}</b></div>
-        ${t?`<div class="can-k-s">⚽ ${t.goles} · 🅰️ ${t.asis} · ⭐ ${t.rend.toFixed(1)} <small>(${t.pj} PJ en ${t.anio}) · total ${k.hist.goles}G ${k.hist.asis}A</small></div>`:""}
-        ${k.explo===(C.temps&&C.temps.length?C.temps[C.temps.length-1].anio:0)||salto?`<div class="can-tag">🔥 ¡DIO EL SALTO! subió ${k.m-k.m0>0?k.m-k.m0:"mucho"} puntos</div>`:""}
-        ${t&&t.sorp?`<div class="can-tag sorp">😮 SORPRESA: se vino con todo, y eso que el potencial era ${k.pot}</div>`:""}${acc||""}</div>`; };
+    const ORD={pot:(a,b)=>b.pot-a.pot||b.m-a.m, niv:(a,b)=>b.m-a.m||b.pot-a.pot, edad:(a,b)=>a.edad-b.edad||b.pot-a.pot, pos:(a,b)=>CAN_POS.indexOf(a.posiciones[0])-CAN_POS.indexOf(b.posiciones[0])||b.pot-a.pot};
+    const cab=()=>`<div class="can-th"><button data-ord="pos" class="${orden==="pos"?"on":""}">POS</button><span>NOMBRE</span><button data-ord="edad" class="${orden==="edad"?"on":""}">EDAD</button><button data-ord="niv" class="${orden==="niv"?"on":""}">NIV</button><button data-ord="pot" class="${orden==="pot"?"on":""}">POT${orden==="pot"?" ▼":""}</button></div>`;
+    const fila=(k,acc)=>{ const on=abierto===k.id, t=k.anual, salto=k.m-k.m0>=7, ult=C.temps&&C.temps.length?C.temps[C.temps.length-1].anio:0;
+      return `<button class="can-tr${on?" on":""}" data-fila="${k.id}"><span class="can-pos">${k.posiciones[0]}</span><span class="can-nm">${CAN_PAISES[k.pais]?CAN_PAISES[k.pais].b+" ":""}${dtEsc(canIni(k.nombre))}${salto||k.explo===ult?" 🔥":""}</span><span>${k.edad}</span><b style="color:${canCol(k.m)}">${k.m}</b><b style="color:${canCol(k.pot)}">${k.pot}</b></button>`
+        +(on?`<div class="can-det"><div class="can-k-top"><b>${dtEsc(k.nombre)}</b> <small>${k.pais} · ${k.edad} años · ${k.posiciones[0]}</small></div>${canBarraPot(k)}
+          <div class="can-k-n">Nivel <b>${k.m}</b> · Potencial <b class="can-pot t${canTier(k.pot)}">${k.pot}</b></div>
+          ${t?`<div class="can-k-s">⚽ ${t.goles} · 🅰️ ${t.asis} · ⭐ ${t.rend.toFixed(1)} <small>(${t.pj} PJ en ${t.anio})</small></div>`:""}
+          ${salto?`<div class="can-tag">🔥 ¡DIO EL SALTO! subió ${k.m-k.m0} puntos</div>`:""}${t&&t.sorp?`<div class="can-tag sorp">😮 SORPRESA: se vino con todo, y eso que el potencial era ${k.pot}</div>`:""}${acc||""}</div>`:""); };
+    const tabla=(L,acc)=>`<div class="can-tabla">${cab()}${L.length?L.slice().sort(ORD[orden]).map(k=>fila(k,acc(k))).join(""):`<p class="can-vacio">Todavía no hay nadie.</p>`}</div>`;
     const pintar=()=>{
       const T=Cn.nivel, max=T>=5, c=CAN_NIV.costo[T], q=pais?CAN_PAISES[pais].q:0, libres=Cn.oj-Cn.ojMis;
       const lider=(()=>{ const L=Cn.pibes.map(id=>Cn.k[id]).filter(k=>k&&k.anual); if(!L.length) return ""; const g=L.slice().sort((a,b)=>b.anual.goles-a.anual.goles)[0], a=L.slice().sort((a,b)=>b.anual.asis-a.anual.asis)[0], r=L.slice().sort((a,b)=>b.anual.rend-a.anual.rend)[0];
-        return `<div class="dt-card"><span class="dt-eti">🏆 LÍDERES DE LA RESERVA · ${g.anual.anio}</span><ul class="dt-mini"><li>⚽ Goleador: <b>${dtEsc(g.nombre)}</b> (${g.anual.goles})${g.pot<75?" 😮 con poco potencial":""}</li><li>🅰️ Asistidor: <b>${dtEsc(a.nombre)}</b> (${a.anual.asis})</li><li>⭐ Mejor rendimiento: <b>${dtEsc(r.nombre)}</b> (${r.anual.rend.toFixed(1)})</li></ul></div>`; })();
+        return `<p class="dt-eti">🏆 LÍDERES DE LA RESERVA · ${g.anual.anio}</p><ul class="dt-mini"><li>⚽ Goleador: <b>${dtEsc(g.nombre)}</b> (${g.anual.goles})${g.pot<75?" 😮 con poco potencial":""}</li><li>🅰️ Asistidor: <b>${dtEsc(a.nombre)}</b> (${a.anual.asis})</li><li>⭐ Mejor rendimiento: <b>${dtEsc(r.nombre)}</b> (${r.anual.rend.toFixed(1)})</li></ul>`; })();
       const jov=(()=>{ let P; try{ P=plantel(C,C.Sv||(C.temps&&C.temps[C.temps.length-1])||null); }catch(e){ return ""; }
         const L=P.xi.concat(P.banco).map(id=>DTJ[id]).filter(j=>j&&!j.cantera&&canPotReal(j)); if(!L.length) return "";
-        return `<div class="dt-card"><span class="dt-eti">🔭 JÓVENES DE TU PLANTEL (menos de 24)</span><ul class="dt-mini">${L.map(j=>{ const p=canPotReal(j); return `<li>${dtEsc(j.nombre)} · ${p.edad} años · nivel ${j.media} · potencial <b>${p.pot}</b></li>`; }).join("")}</ul><p class="dt-sub">El potencial de los jugadores reales es una estimación según lo que se espera de cada pibe.</p></div>`; })();
-      const filaP=k=>{ const P=FIN_PARTES[k], n=F[k], mx=P.costo.length, c=n<mx?P.costo[n]:0;
-        return `<div class="dt-card fin-fila"><span class="dt-eti">${P.ico} ${P.n.toUpperCase()} · NIVEL ${n}/${mx}</span><span class="fin-pips">${"■".repeat(n)}${"□".repeat(mx-n)}</span><h3>${P.niv[n]}</h3><p>${P.desc}${n<mx?` Siguiente: ${P.niv[n+1]}.`:""}</p>${n>=mx?`<b class="fin-max">AL MÁXIMO</b>`:`<button class="btn" data-pup="${k}" ${F.caja>=c?"":"disabled"}>MEJORAR · ${dtPlata(c)}</button>`}</div>`; };
-      const princ=F.deuda?F.deuda.princ:0, libre=finR1(FIN_MAX_PREST-princ), opc=[10,20,35,50,70].filter(m=>m<=libre);
+        return `<p class="dt-eti">🔭 JÓVENES DE TU PLANTEL (menos de 24)</p><ul class="dt-mini">${L.map(j=>{ const p=canPotReal(j); return `<li>${dtEsc(j.nombre)} · ${p.edad} años · nivel ${j.media} · potencial <b>${p.pot}</b></li>`; }).join("")}</ul><p class="dt-sub">El potencial de los jugadores reales es una estimación.</p>`; })();
+      const prom=Cn.subidos.length?`<p class="dt-eti">⬆️ PROMOVIDOS AL PLANTEL</p><ul class="dt-mini">${Cn.subidos.map(id=>Cn.k[id]).filter(Boolean).map(k=>`<li>${dtEsc(k.nombre)} · ${k.posiciones[0]} · ${k.edad} años · nivel ${k.m} / pot. ${k.pot}</li>`).join("")}</ul>`:"";
+      const pat=(F.pat&&F.pat.length)?`<p class="dt-eti">🤝 PATROCINADORES · ${dtPlata(patIngreso(F))} POR AÑO</p><ul class="dt-mini">${F.pat.map(x=>`<li>${PAT_TIPOS[x.tipo].ico} ${dtEsc(x.marca)} · ${PAT_NIV[x.tier]} · ${dtPlata(x.anual)}/año</li>`).join("")}</ul>`:"";
+      const mas=[lider,jov,prom,pat].filter(Boolean).join("");
+      const reserva=Cn.pibes.map(id=>Cn.k[id]).filter(Boolean);
       cont.innerHTML=`${msg?`<div class="dt-card can-msg">${msg}</div>`:""}
-        <canvas class="mc-dib fin-est" id="finEst" width="120" height="72"></canvas>
-        <div class="dt-card dt-caja-plata"><span class="dt-eti">CAJA DEL CLUB</span><span class="dt-plata">${dtPlata(F.caja)}</span>
-          <ul class="dt-mini"><li>🚀 Los pibes crecen <b>+${finDesarrollo(F)+Cn.nivel*7}%</b> más rápido (cantera +${Cn.nivel*7}% · predio +${finDesarrollo(F)}%).</li></ul></div>
-        ${F.danos.length?`<div class="dt-card"><span class="dt-eti">⚠️ DESTROZOS EN EL ESTADIO · SIN ARREGLAR = CLAUSURA</span>${F.danos.map((d,i)=>`<p>Rotura en ${d.parte}</p><button class="btn" data-rep="${i}" ${F.caja>=d.costo?"":"disabled"}>REPARAR · ${dtPlata(d.costo)}</button>`).join("")}</div>`:""}
-        <div class="dt-card"><span class="dt-eti">${CAN_NIV.ico[T]} CANTERA · NIVEL ${T}/5</span><span class="fin-pips">${"■".repeat(T)}${"□".repeat(5-T)}</span><h3>${CAN_NIV.n[T]}</h3>
-          <p>Reserva: ${Cn.pibes.length}/${canCap(Cn)} pibes. Cada mejora trae más chances de encontrar jóvenes estrellas y más lugar en la reserva.</p>
-          ${canPanelStats(T,0,max?null:T)}
-          ${max?`<b class="fin-max">AL MÁXIMO</b>`:`<button class="btn" data-up="1" ${F.caja>=c?"":"disabled"}>MEJORAR · ${dtPlata(c)}</button><p class="dt-sub">Siguiente: ${CAN_NIV.n[T+1]}.</p>`}</div>
-        <div class="dt-card"><span class="dt-eti">🏗️ PREDIO DE LA RESERVA</span><p>Mejorar el predio no cambia a qué pibes encontrás: hace que los que ya tenés se desarrollen más rápido cada año, y también los que subís al plantel.</p></div>
-        ${["cap","casas","inst","plat"].map(filaP).join("")}
-        <div class="dt-card"><span class="dt-eti">🔭 OJEADORES · ${Cn.oj}/3 CONTRATADOS · ${libres} LIBRES ESTE AÑO</span>
-          <p>Cada ojeador hace un viaje por año y vuelve con <b>10 pibes</b> de la posición que elijas. Los que no ficharás se van a otro club al terminar el año.</p>
+        <div class="can-caja"><span>💰 CAJA DEL CLUB</span><b>${dtPlata(F.caja)}</b></div>
+        <h3 class="can-h">🌱 LA RESERVA <small>${reserva.length}/${canCap(Cn)}</small></h3>
+        ${tabla(reserva,k=>`<div class="dt-btns"><button class="btn azul" data-subir="${k.id}">SUBIR AL PLANTEL</button><button class="btn" data-baja="${k.id}">DAR DE BAJA</button></div>`)}
+        <p class="dt-sub">NIV = nivel de hoy · POT = hasta dónde puede llegar. Tocá un pibe para ver más. Si uno pega el salto (🔥), subilo al plantel.</p>
+        <h3 class="can-h">🔭 OJEADORES <small>${Cn.oj}/3 · ${libres} libres</small></h3>
+        <div class="dt-card">
+          <p>Cada ojeador viaja una vez por año y vuelve con <b>10 pibes</b> de la posición que elijas. Los que no ficharás se van al terminar el año.</p>
           ${Cn.oj<3?`<button class="btn azul" data-oj="1" ${F.caja>=CAN_OJ_COSTO[Cn.oj]?"":"disabled"}>CONTRATAR OJEADOR ${Cn.oj+1} · ${dtPlata(CAN_OJ_COSTO[Cn.oj])}</button>`:""}
           ${libres>0?`<div class="can-paises">${Object.keys(CAN_PAISES).filter(p=>p!=="Argentina").map(p=>`<button class="mc-op${pais===p?" on":""}" data-pais="${p}">${CAN_PAISES[p].b} ${p}<small>${CAN_PAISES[p].q>0?" ★":CAN_PAISES[p].q<0?" ▼":""}</small></button>`).join("")}</div>
             <div class="can-paises">${CAN_POS.map(p=>`<button class="mc-op${pos===p?" on":""}" data-pos="${p}">${p}</button>`).join("")}</div>
-            ${pais?canPanelStats(T,q,null):`<p class="dt-sub">★ buena cantera · ▼ cantera floja. Elegí un país para ver qué podés encontrar.</p>`}
+            ${pais?`<details class="can-det2"><summary>¿Qué pibes puedo encontrar en ${pais}?</summary>${canPanelStats(T,q,null)}</details>`:`<p class="dt-sub">★ buena cantera · ▼ cantera floja. Elegí un país y una posición.</p>`}
             <button class="btn" data-viaje="1" ${pais&&pos?"":"disabled"}>${pais&&pos?`ENVIAR A ${pais.toUpperCase()} POR UN ${pos}`:"ELEGÍ PAÍS Y POSICIÓN"}</button>`
             :`<p class="dt-sub">Tus ojeadores ya viajaron este año.</p>`}</div>
-        ${Cn.cand.length?`<div class="dt-card"><span class="dt-eti">🧒 PIBES QUE TRAJERON LOS OJEADORES · ${Cn.cand.length}</span></div>${Cn.cand.slice().sort((a,b)=>b.pot-a.pot).map(k=>fichaK(k,`<button class="btn" data-fichar="${k.id}" ${F.caja>=canFee(k)&&Cn.pibes.length<canCap(Cn)?"":"disabled"}>FICHAR A LA RESERVA · ${dtPlata(canFee(k))}</button>`)).join("")}`:""}
-        ${lider}
-        <div class="dt-card"><span class="dt-eti">🌱 LA RESERVA · ${Cn.pibes.length}</span><p class="dt-sub">La barra es el nivel de hoy; la marca blanca, el potencial. Si uno pega el salto, subilo al plantel: va a tu banca y lo ponés de titular en 📋 ONCE Y BANCA.</p></div>
-        ${Cn.pibes.map(id=>Cn.k[id]).filter(Boolean).sort((a,b)=>b.pot-a.pot).map(k=>fichaK(k,`<div class="dt-btns"><button class="btn azul" data-subir="${k.id}">SUBIR AL PLANTEL</button><button class="btn" data-baja="${k.id}">DAR DE BAJA</button></div>`)).join("")}
-        ${Cn.subidos.length?`<div class="dt-card"><span class="dt-eti">⬆️ PROMOVIDOS AL PLANTEL</span><ul class="dt-mini">${Cn.subidos.map(id=>Cn.k[id]).filter(Boolean).map(k=>`<li>${dtEsc(k.nombre)} · ${k.posiciones[0]} · ${k.edad} años · nivel ${k.m} / pot. ${k.pot}</li>`).join("")}</ul></div>`:""}
-        ${jov}
-        ${(F.pat&&F.pat.length)?`<div class="dt-card"><span class="dt-eti">🤝 PATROCINADORES · ${dtPlata(patIngreso(F))} POR AÑO</span><ul class="dt-mini">${F.pat.map(x=>`<li>${PAT_TIPOS[x.tipo].ico} ${dtEsc(x.marca)} · ${PAT_NIV[x.tier]} · ${dtPlata(x.anual)}/año</li>`).join("")}</ul></div>`:""}
-        <div class="dt-card"><span class="dt-eti">🏦 BANCO</span>
-          ${F.deuda?`<p>Debés <b>${dtPlata(F.deuda.resta)}</b>. Cuota: ${finPl2(F.deuda.cuotaMes)} por mes (12 por año).</p>`:"<p>No tenés deudas.</p>"}
-          <p>Préstamos hasta ${dtPlata(FIN_MAX_PREST)} en total, a 5 años (60 cuotas) y 50% de interés sobre lo pedido. La cuota se descuenta de tu caja al cerrar cada mercado. <b>Si la caja llega a cero, perdés.</b></p>
-          ${opc.length?`<div class="dt-btns">${opc.map(m=>`<button class="btn azul" data-pre="${m}">PEDIR ${dtPlata(m)}<br><small>cuota ${finPl2(m*(1+FIN_INTERES)/FIN_MESES)}/mes</small></button>`).join("")}</div>`:"<p>Ya llegaste al máximo de crédito.</p>"}
-          ${F.deuda&&F.caja>F.deuda.resta?`<button class="btn" data-pagar="1">CANCELAR TODA LA DEUDA · ${dtPlata(F.deuda.resta)}</button>`:""}</div>
+        ${Cn.cand.length?`<h3 class="can-h">🧒 LOS QUE TRAJERON <small>${Cn.cand.length}</small></h3>${tabla(Cn.cand,k=>`<button class="btn" data-fichar="${k.id}" ${F.caja>=canFee(k)&&Cn.pibes.length<canCap(Cn)?"":"disabled"}>FICHAR A LA RESERVA · ${dtPlata(canFee(k))}</button>${Cn.pibes.length>=canCap(Cn)?`<p class="dt-sub">La reserva está llena.</p>`:""}`)}`:""}
+        <div class="dt-card"><span class="dt-eti">${CAN_NIV.ico[T]} CANTERA · NIVEL ${T}/5</span><span class="fin-pips">${"■".repeat(T)}${"□".repeat(5-T)}</span><h3>${CAN_NIV.n[T]}</h3>
+          <p>Mejor cantera = pibes con más potencial, más lugar en la reserva y se desarrollan <b>+${Cn.nivel*7}%</b> más rápido.</p>
+          <details class="can-det2"><summary>Ver qué pibes salen en este nivel</summary>${canPanelStats(T,0,max?null:T)}</details>
+          ${max?`<b class="fin-max">AL MÁXIMO</b>`:`<button class="btn" data-up="1" ${F.caja>=c?"":"disabled"}>MEJORAR A “${CAN_NIV.n[T+1]}” · ${dtPlata(c)}</button>`}</div>
+        ${mas?`<details class="dt-card can-det2"><summary>MÁS INFO</summary>${mas}</details>`:""}
         <button class="btn" id="canVolver">VOLVER</button>`;
-      dibEstadioPintar(cont.querySelector("#finEst"),F);
     };
     cont.onclick=e=>{ const b=e.target.closest("button"); if(!b||b.disabled) return; msg="";
-      if(b.dataset.up){ const c=CAN_NIV.costo[Cn.nivel]; if(Cn.nivel<5&&F.caja>=c){ F.caja=finR1(F.caja-c); Cn.nivel++; msg=`Mejoraste la cantera: ahora es “${CAN_NIV.n[Cn.nivel]}”.`; } }
+      if(b.dataset.fila){ abierto=abierto===b.dataset.fila?null:b.dataset.fila; }
+      else if(b.dataset.ord){ orden=b.dataset.ord; }
+      else if(b.dataset.up){ const c=CAN_NIV.costo[Cn.nivel]; if(Cn.nivel<5&&F.caja>=c){ F.caja=finR1(F.caja-c); Cn.nivel++; msg=`Mejoraste la cantera: ahora es “${CAN_NIV.n[Cn.nivel]}”.`; } }
       else if(b.dataset.oj){ const c=CAN_OJ_COSTO[Cn.oj]; if(Cn.oj<3&&F.caja>=c){ F.caja=finR1(F.caja-c); Cn.oj++; msg=`Contrataste al ojeador ${Cn.oj}.`; } }
       else if(b.dataset.pais){ pais=b.dataset.pais; }
       else if(b.dataset.pos){ pos=b.dataset.pos; }
-      else if(b.dataset.viaje){ if(pais&&pos&&Cn.ojMis<Cn.oj){ Cn.ojMis++; for(let i=0;i<10;i++){ const k=canNuevo(Cn,pais,pos,Cn.nivel); Cn.cand.push(k); } msg=`🔭 Tu ojeador volvió de ${pais} con 10 pibes para ${pos}. Mirá cuáles te convencen.`; } }
-      else if(b.dataset.fichar){ const k=Cn.cand.find(x=>x.id===b.dataset.fichar); if(k&&F.caja>=canFee(k)&&Cn.pibes.length<canCap(Cn)){ F.caja=finR1(F.caja-canFee(k)); Cn.cand=Cn.cand.filter(x=>x!==k); Cn.k[k.id]=k; Cn.pibes.push(k.id); DTJ[k.id]=k; msg=`Fichaste a ${dtEsc(k.nombre)} para la reserva.`; } }
-      else if(b.dataset.subir){ const k=Cn.k[b.dataset.subir]; if(k&&canSubir(C,k.id)) msg=`${dtEsc(k.nombre)} subió al plantel y está en tu banca. Ponelo de titular en 📋 ONCE Y BANCA.`; }
-      else if(b.dataset.baja){ const k=Cn.k[b.dataset.baja]; if(k){ Cn.pibes=Cn.pibes.filter(x=>x!==k.id); delete Cn.k[k.id]; msg=`${dtEsc(k.nombre)} dejó el club.`; } }
-      else if(b.dataset.pup){ const k=b.dataset.pup, c=FIN_PARTES[k].costo[F[k]]; if(F.caja>=c){ F.caja=finR1(F.caja-c); F[k]++; msg=`Mejoraste: ${FIN_PARTES[k].niv[F[k]]}.`; } }
-      else if(b.dataset.rep!=null){ const d=F.danos[+b.dataset.rep]; if(d&&F.caja>=d.costo){ F.caja=finR1(F.caja-d.costo); F.danos.splice(+b.dataset.rep,1); F.clausura=F.danos.length>0; } }
-      else if(b.dataset.pre){ const m=+b.dataset.pre, tot=finR1(m*(1+FIN_INTERES)), cm=tot/FIN_MESES;
-        F.caja=finR1(F.caja+m); F.deuda=F.deuda||{princ:0,resta:0,cuotaMes:0}; F.deuda.princ=finR1(F.deuda.princ+m); F.deuda.resta=finR1(F.deuda.resta+tot); F.deuda.cuotaMes=Math.round((F.deuda.cuotaMes+cm)*100)/100; }
-      else if(b.dataset.pagar){ if(F.deuda&&F.caja>F.deuda.resta){ F.caja=finR1(F.caja-F.deuda.resta); F.deuda=null; } }
+      else if(b.dataset.viaje){ if(pais&&pos&&Cn.ojMis<Cn.oj){ Cn.ojMis++; abierto=null; for(let i=0;i<10;i++){ const k=canNuevo(Cn,pais,pos,Cn.nivel); Cn.cand.push(k); } msg=`🔭 Tu ojeador volvió de ${pais} con 10 pibes para ${pos}. Mirá cuáles te convencen.`; } }
+      else if(b.dataset.fichar){ const k=Cn.cand.find(x=>x.id===b.dataset.fichar); if(k&&F.caja>=canFee(k)&&Cn.pibes.length<canCap(Cn)){ F.caja=finR1(F.caja-canFee(k)); Cn.cand=Cn.cand.filter(x=>x!==k); Cn.k[k.id]=k; Cn.pibes.push(k.id); DTJ[k.id]=k; abierto=null; msg=`Fichaste a ${dtEsc(k.nombre)} para la reserva.`; } }
+      else if(b.dataset.subir){ const k=Cn.k[b.dataset.subir]; if(k&&canSubir(C,k.id)){ abierto=null; msg=`${dtEsc(k.nombre)} subió al plantel y está en tu banca. Ponelo de titular en 📋 ONCE Y BANCA.`; } }
+      else if(b.dataset.baja){ const k=Cn.k[b.dataset.baja]; if(k){ Cn.pibes=Cn.pibes.filter(x=>x!==k.id); delete Cn.k[k.id]; abierto=null; msg=`${dtEsc(k.nombre)} dejó el club.`; } }
       else if(b.id==="canVolver"){ cont.onclick=null; cerrar(); return; }
       dtAutoGuardar(); pintar(); if(msg) ov.scrollTo(0,0); };
     pintar();
@@ -5377,8 +5404,7 @@ async function dtMercado(C,S1){
       <p class="dt-sub">${l.length} ${l.length===1?"jugador":"jugadores"} en venta</p>
       <div class="dt-lista" id="dtMercLista">${l.map(j=>{ const p=dtPrecio(j), ok=p<=M.dinero; return `<div class="dt-merc-item">${dtCarta(j,null,!ok)}<span class="dt-precio ${ok?"":"caro"}">${dtPlata(p)}${ok?"":" · NO ALCANZA"}</span></div>`; }).join("")}</div>
       ${C.fin&&C.fin.deuda?`<p class="dt-sub">🏦 Al cerrar el mercado el banco te descuenta ${dtPlata(Math.min(C.fin.deuda.cuotaMes*12,C.fin.deuda.resta))} de cuotas.</p>`:""}
-      ${C.fin&&C.fin.danos.length?`<p class="dt-sub">⚠️ Hay destrozos en el estadio: si no los arreglás desde la cantera, queda clausurado.</p>`:""}
-      <button class="btn azul" id="dtIrCancha">🌱 CANTERA, PREDIO Y BANCO</button>
+      <button class="btn azul" id="dtIrCancha">🌱 LA CANTERA</button>
       <button class="btn" id="dtCerrarMerc">CERRAR MERCADO Y ARRANCAR ${S1.anio+1}</button>`;
     $("dtMercTabs").onclick=e=>{ const b=e.target.closest("button"); if(!b) return; tab=b.dataset.t; aviso=""; pintar3(); };
     $("dtMercPos").onclick=e=>{ const b=e.target.closest("button"); if(!b) return; pf=b.dataset.p; aviso=""; pintar3(); };
@@ -5491,14 +5517,9 @@ const DIB_GUIAS={
       [[18,2],[34,5],[50,9],[66,13],[82,17]].forEach(([a,b],i)=>{ P(a,h-14-b-8,"#4ade80",10,b+8); P(a,h-14-b-8,"#fff",10,1); P(a+4,h-14-b-16,"#f5c518",3,3+i); });
       P(100,10,"#000",14,14); P(101,11,"#f5c518",12,12); P(104,14,"#000",6,6); } },
     {t:"PATROCINIOS",d:"Ganá torneos y te llegan marcas de ropa, apuestas y bancos.",f:(P,x,w,h)=>{ P(0,0,"#061a45",w,h); P(40,14,"#000",40,46); P(42,16,"#e63946",36,42); P(52,16,"#000",16,6); P(48,28,"#fff",24,4); P(48,36,"#f5c518",24,4); P(48,44,"#fff",24,4); P(30,18,"#000",12,10); P(78,18,"#000",12,10); } },
-    {t:"EL PREDIO",d:"Mejorá la cancha, la residencia y el gimnasio de la reserva: los pibes crecen más rápido. Botón 🌱 siempre a mano.",f:(P,x,w,h)=>dibEstadio(P,x,w,h,{cap:3,casas:2,inst:3,plat:2,danos:[],clausura:false})},
-    {t:"PLATA Y PREMIOS",d:"Los títulos pagan más. Buen equipo y estadio grande dan bono; si anda mal, perdés plata.",f:(P,x,w,h)=>{ P(0,0,"#061a45",w,h);
+    {t:"PLATA Y PREMIOS",d:"Los títulos pagan más. Si el equipo anda bien entra más plata; si anda mal, menos.",f:(P,x,w,h)=>{ P(0,0,"#061a45",w,h);
       dibTexto(x,"+ US$ 15 M",14,16,DIB_ORO); P(14,22,"#000",24,28); P(15,23,DIB_ORO,22,26); P(22,28,"#000",8,12); P(23,29,"#fff7b0",6,10);
       P(52,36,"#000",10,14); P(53,37,"#2fbf4a",8,12); P(66,26,"#000",10,24); P(67,27,"#2fbf4a",8,22); P(80,16,"#000",10,34); P(81,17,"#2fbf4a",8,32); dibFlecha(P,50,56,96,56,"#fff"); }},
-    {t:"BANCO Y CUOTAS",d:"Hasta US$ 70 M. Se pagan cuotas cada año. Caja en cero = perdés.",f:(P,x,w,h)=>{ P(0,0,"#061a45",w,h);
-      P(20,22,"#000",80,40); P(21,23,"#d9d4c0",78,38); P(20,18,"#000",80,6); P(21,19,"#8a8fa0",78,4); for(let i=0;i<5;i++) P(26+i*14,26,"#fff",5,30);
-      dibTexto(x,"BANCO",46,16,DIB_ORO); dibTexto(x,"$ 70 M",40,70,"#fff"); }},
-    {t:"DESTROZOS",d:"Tras derbis y derrotas se puede romper algo del estadio. Sin reparar desde la cantera, clausura.",f:(P,x,w,h)=>dibEstadio(P,x,w,h,{cap:2,casas:0,inst:1,plat:1,danos:[{},{}],clausura:true})}
   ]
 };
 function dibGuiaHTML(clave){
