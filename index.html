@@ -11328,5 +11328,8 @@ window.PRENSA={dibujarSala,inyectarCSS,probar:(tipo,mot,extra)=>{ const C=DTC,S=
 })();
 
 </script>
+<div id="sinRed" hidden>📴 SIN CONEXIÓN<br><span>cuenta y clasificación no andan</span></div>
+<style>#sinRed{position:fixed;left:8px;top:calc(8px + env(safe-area-inset-top,0px));max-width:calc(100% - 130px);z-index:9500;pointer-events:none;text-align:left;font-family:var(--pixel,monospace);font-size:8px;line-height:1.5;padding:6px 8px;background:#14143a;color:#ffd84a;border:2px solid #ffd84a;box-shadow:3px 3px 0 #000}#sinRed span{font-family:var(--cuerpo,monospace);font-size:11px;color:#fff}</style>
+<script>try{const sr=document.getElementById("sinRed"),act=()=>{sr.hidden=navigator.onLine!==false};addEventListener("online",act);addEventListener("offline",act);act()}catch(e){}</script>
 <script>try{ if("serviceWorker" in navigator && /^https?:$/.test(location.protocol)) window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{})); }catch(e){}</script>
 </body></html>
